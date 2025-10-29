@@ -68,6 +68,7 @@ defmodule PhoenixFirstWeb.Router do
       live "/todos/new", TodoLive.Form, :new
       live "/todos/:id", TodoLive.Show, :show
       live "/todos/:id/edit", TodoLive.Form, :edit
+      live "/counter", CounterLive.Counter, :new
       live "/users/register", UserLive.Registration, :new
       live "/users/log-in", UserLive.Login, :new
       live "/users/log-in/:token", UserLive.Confirmation, :new
