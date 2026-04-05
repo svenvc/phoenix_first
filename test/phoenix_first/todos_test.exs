@@ -29,12 +29,13 @@ defmodule PhoenixFirst.TodosTest do
     end
 
     test "create_todo/2 with valid data creates a todo" do
-      valid_attrs = %{description: "some description", due: ~D[2025-10-23]}
+      due = Date.utc_today() |> Date.add(10)
+      valid_attrs = %{description: "some description", due: due}
       scope = user_scope_fixture()
 
       assert {:ok, %Todo{} = todo} = Todos.create_todo(scope, valid_attrs)
       assert todo.description == "some description"
-      assert todo.due == ~D[2025-10-23]
+      assert todo.due == due
       assert todo.user_id == scope.user.id
     end
 
@@ -46,11 +47,12 @@ defmodule PhoenixFirst.TodosTest do
     test "update_todo/3 with valid data updates the todo" do
       scope = user_scope_fixture()
       todo = todo_fixture(scope)
-      update_attrs = %{description: "some updated description", due: ~D[2025-10-24]}
+      due = Date.utc_today() |> Date.add(20)
+      update_attrs = %{description: "some updated description", due: due}
 
       assert {:ok, %Todo{} = todo} = Todos.update_todo(scope, todo, update_attrs)
       assert todo.description == "some updated description"
-      assert todo.due == ~D[2025-10-24]
+      assert todo.due == due
     end
 
     test "update_todo/3 with invalid scope raises" do

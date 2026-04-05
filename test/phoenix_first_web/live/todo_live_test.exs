@@ -4,8 +4,8 @@ defmodule PhoenixFirstWeb.TodoLiveTest do
   import Phoenix.LiveViewTest
   import PhoenixFirst.TodosFixtures
 
-  @create_attrs %{description: "some description", due: "2025-10-23"}
-  @update_attrs %{description: "some updated description", due: "2025-10-24"}
+  @create_attrs %{description: "some description", due: Date.utc_today() |> Date.add(10) |> to_string()}
+  @update_attrs %{description: "some updated description", due: Date.utc_today() |> Date.add(11) |> to_string()}
   @invalid_attrs %{description: nil, due: nil}
 
   setup :register_and_log_in_user

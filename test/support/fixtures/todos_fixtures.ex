@@ -11,7 +11,7 @@ defmodule PhoenixFirst.TodosFixtures do
     attrs =
       Enum.into(attrs, %{
         description: "some description",
-        due: ~D[2025-10-23]
+        due: Date.utc_today() |> Date.add(7)
       })
 
     {:ok, todo} = PhoenixFirst.Todos.create_todo(scope, attrs)
